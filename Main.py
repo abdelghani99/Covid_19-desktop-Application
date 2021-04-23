@@ -1,7 +1,6 @@
 import datetime
 from PyQt5 import QtCore, QtGui, QtWidgets
 import matplotlib.pyplot as plt
-import image_file
 from matplotlib import image
 import pandas as pd
 import seaborn as sns

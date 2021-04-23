@@ -1,8 +1,6 @@
 import requests
 import datetime
 import socket
-import pyqtgraph as pg
-import sys
 import matplotlib
 matplotlib.use('Qt5Agg')
 from matplotlib import pyplot as plt
@@ -57,6 +55,3 @@ def Display_pie_chart(data, labels):
     ax.axis("equal")
     ax.pie(data, labels=labels, autopct="%1.2f%%")
     plt.show()
-
-
-

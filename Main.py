@@ -1,14 +1,12 @@
 import datetime
-from PyQt5 import QtCore, QtGui, QtWidgets
 import matplotlib.pyplot as plt
-from matplotlib import image
 import pandas as pd
 import seaborn as sns
 import webbrowser
 from datetime import datetime
-from PyQt5.QtWidgets import QFileDialog, QApplication
+from PyQt5.QtWidgets import QFileDialog
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox, QLabel
+from PyQt5.QtWidgets import QMessageBox
 
 from Functions import (
     return_realtime_stats_country,
@@ -292,9 +290,7 @@ class Ui_MainWindow(object):
                 recvr_data = "Recovered : {}".format(v["TotalRecovered"])
                 cnfirm_data = "Confirmed : {}".format(v["TotalConfirmed"])
                 death_data = "Deaths : {}".format(v["TotalDeaths"])
-                date_data = "Refreshed On : {}".format(
-                    date.strftime("%m/%d/%Y, %H:%M")
-                )
+                date_data = "Refreshed On : {}".format(date.strftime("%m/%d/%Y, %H:%M"))
             self.label.setText(recvr_data)
             self.label_3.setText(cnfirm_data)
             self.label_4.setText(death_data)
@@ -374,7 +370,7 @@ class Ui_MainWindow(object):
     def France_Plots(self):
         # def Barplot_chart(self):
         plt.style.use('bmh')
-        df = pd.read_csv('data_covid.csv')
+        df = pd.read_csv('D:\\data_covid.csv')
         specified = df.loc[18700:19028]
         x = specified['date']
         y = specified['new_cases']
@@ -395,11 +391,11 @@ class Ui_MainWindow(object):
     def Germany_Plots(self):
         # def Barplot_chart(self):
         plt.style.use('bmh')
-        df = pd.read_csv('data_covid.csv')
+        df = pd.read_csv('D:\\data_covid.csv')
         specified = df.loc[20109:20436]
         x = specified['date']
         y = specified['new_cases']
-        plt.title('BarPlot')
+        plt.title('covid daily cases in germany')
         plt.xlabel('Time', fontsize=18)
         plt.ylabel('Daily cases', fontsize=18)
         plt.bar(x, y, color='Orange')
@@ -408,34 +404,37 @@ class Ui_MainWindow(object):
         sns.set(rc={"figure.figsize": (2, 8)})
         x = specified['new_cases']
         ax = sns.displot(x, color='Orange')
+        plt.title('Covid daily cases in germany ')
         plt.show()
 
     def Switzerland_Plots(self):
         # def Barplot_chart(self):
         plt.style.use('bmh')
-        df = pd.read_csv('data_covid.csv')
+        df = pd.read_csv('D:\\data_covid.csv')
         specified = df.loc[50548:50876]
         x = specified['date']
         y = specified['new_cases']
-        plt.title('BarPlot')
+        plt.title('Covid daily cases in Switzerland')
         plt.xlabel('Time', fontsize=18)
         plt.ylabel('Daily cases', fontsize=18)
         plt.bar(x, y, color='Red')
         plt.show()
+
         # def Histogram_chart(self):
         sns.set(rc={"figure.figsize": (2, 8)})
         x = specified['new_cases']
         ax = sns.displot(x, color='Red')
+        plt.title('Covid daily cases in Switzerland')
         plt.show()
 
     def Italy_Plots(self):
         # def Barplot_chart(self):
         plt.style.use('bmh')
-        df = pd.read_csv('data_covid.csv')
+        df = pd.read_csv('D:\\data_covid.csv')
         specified = df.loc[26665:26993]
         x = specified['date']
         y = specified['new_cases']
-        plt.title('BarPlot')
+        plt.title('Covid daily cases in Italy')
         plt.xlabel('Time', fontsize=18)
         plt.ylabel('Daily cases', fontsize=18)
         plt.bar(x, y, color='Green')
@@ -444,8 +443,9 @@ class Ui_MainWindow(object):
         sns.set(rc={"figure.figsize": (2, 8)})
         x = specified['new_cases']
         ax = sns.displot(x, color='Green')
+        plt.title('Covid daily cases in Italy')
         plt.show()
-        
+
     def load_image(self):
         File = QFileDialog.getOpenFileName(None, 'OpenFile', 'D:\\covid', "Image file(*.jpg)")
         return File
@@ -453,22 +453,26 @@ class Ui_MainWindow(object):
     def Filtering(self):
         image = QtGui.QImage(QtGui.QImageReader("D:\\Covid\\Filtering.PNG").read())
         self.label_30.setPixmap(QtGui.QPixmap(image))
+
     def Histogram(self):
         image = QtGui.QImage(QtGui.QImageReader("D:\\Covid\\Histogram.PNG").read())
         self.label_30.setPixmap(QtGui.QPixmap(image))
+
     def Canny_ope(self):
         image = QtGui.QImage(QtGui.QImageReader("D:\\Covid\\Canny.PNG").read())
         self.label_30.setPixmap(QtGui.QPixmap(image))
+
     def Laplacian(self):
         image = QtGui.QImage(QtGui.QImageReader("D:\\Covid\\Laplacian.PNG").read())
         self.label_30.setPixmap(QtGui.QPixmap(image))
+
     def sobel_x(self):
         image = QtGui.QImage(QtGui.QImageReader("D:\\Covid\\Sobel_X.PNG").read())
         self.label_30.setPixmap(QtGui.QPixmap(image))
+
     def sobel_y(self):
         image = QtGui.QImage(QtGui.QImageReader("D:\\Covid\\Sobel_Y.PNG").read())
         self.label_30.setPixmap(QtGui.QPixmap(image))
-
 
     def Open_website(self):
         webbrowser.open('http://htmlsegmentation.s3.eu-north-1.amazonaws.com/index.html')
